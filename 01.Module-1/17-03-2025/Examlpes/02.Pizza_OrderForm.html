@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+</head>
+<body>
+    <h2>🍕 Order Your Pizza 🍕 </h2>
+    <hr/>
+
+    <form action="submit_order.php" method="post">
+        <!-- Customer Name -->
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <br><br>
+
+        <!-- Phone Number -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+        <br><br>
+
+        <!-- Pizza Size Selection -->
+        <label for="size">Select Pizza Size:</label>
+        <select id="size" name="size" required>
+            <option value="">-- Choose Size --</option>
+            <option value="small">Small (8")</option>
+            <option value="medium">Medium (12")</option>
+            <option value="large">Large (16")</option>
+        </select>
+        <br><br>
+
+        <!-- Crust Type -->
+        <label>Choose Crust Type:</label>
+        <input type="radio" id="thin" name="crust" value="Thin Crust" required>
+        <label for="thin">Thin Crust</label>
+        <input type="radio" id="thick" name="crust" value="Thick Crust">
+        <label for="thick">Thick Crust</label>
+        <input type="radio" id="stuffed" name="crust" value="Stuffed Crust">
+        <label for="stuffed">Stuffed Crust</label>
+        <br><br>
+
+        <!-- Toppings -->
+        <label>Select Toppings:</label><br>
+        <input type="checkbox" id="pepperoni" name="toppings" value="Pepperoni">
+        <label for="pepperoni">Pepperoni</label>
+        <input type="checkbox" id="mushrooms" name="toppings" value="Mushrooms">
+        <label for="mushrooms">Mushrooms</label>
+        <input type="checkbox" id="onions" name="toppings" value="Onions">
+        <label for="onions">Onions</label>
+        <input type="checkbox" id="olives" name="toppings" value="Olives">
+        <label for="olives">Olives</label>
+        <input type="checkbox" id="extra_cheese" name="toppings" value="Extra Cheese">
+        <label for="extra_cheese">Extra Cheese</label>
+        <br><br>
+
+        <!-- Special Instructions -->
+        <label for="instructions">Special Instructions:</label><br>
+        <textarea id="instructions" name="instructions" rows="4" cols="40" placeholder="Any special requests..."></textarea>
+        <br><br>
+
+        <!-- Payment Method -->
+        <label>Payment Method:</label>
+        <input type="radio" id="cash" name="payment" value="Cash" required>
+        <label for="cash">Cash on Delivery</label>
+        <input type="radio" id="card" name="payment" value="Card">
+        <label for="card">Credit/Debit Card</label>
+        <br><br>
+
+        <!-- Submit and Reset Buttons -->
+        <button type="submit">Place Order</button>
+        <button type="reset">Reset Form</button>
+    </form>
+
+</body>
+</html>
