@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6cc;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            text-align : center;
+        }
+
+        /* Form Container */
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form Elements */
+        label {
+            font-weight: bold;
+            display: inline;
+            margin-top: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Toppings & Payment Section */
+        .options {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .options input {
+            width: auto;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 48%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .btn-submit {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #e65c00;
+        }
+
+        .btn-reset {
+            background-color: #ccc;
+            color: black;
+        }
+
+        .btn-reset:hover {
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🍕 Order Your Pizza 🍕</h2>
+
+    <div class="container">
+        <form action="submit_order.php" method="post">
+            
+            <!-- Customer Name -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+
+            <!-- Pizza Size Selection -->
+            <label for="size">Select Pizza Size:</label>
+            <select id="size" name="size" required>
+                <option value="">-- Choose Size --</option>
+                <option value="small">Small (8")</option>
+                <option value="medium">Medium (12")</option>
+                <option value="large">Large (16")</option>
+            </select>
+
+            <!-- Crust Type -->
+            <label>Choose Crust Type:</label>
+            <div class="options">
+                <input type="radio" id="thin" name="crust" value="Thin Crust" required>
+                <label for="thin">Thin Crust</label>
+
+                <input type="radio" id="thick" name="crust" value="Thick Crust">
+                <label for="thick">Thick Crust</label>
+
+                <input type="radio" id="stuffed" name="crust" value="Stuffed Crust">
+                <label for="stuffed">Stuffed Crust</label>
+            </div>
+
+            <!-- Toppings -->
+            <label>Select Toppings:</label>
+            <div class="options">
+                <input type="checkbox" id="pepperoni" name="toppings" value="Pepperoni">
+                <label for="pepperoni">Pepperoni</label>
+
+                <input type="checkbox" id="mushrooms" name="toppings" value="Mushrooms">
+                <label for="mushrooms">Mushrooms</label>
+
+                <input type="checkbox" id="onions" name="toppings" value="Onions">
+                <label for="onions">Onions</label>
+
+                <input type="checkbox" id="olives" name="toppings" value="Olives">
+                <label for="olives">Olives</label>
+
+                <input type="checkbox" id="extra_cheese" name="toppings" value="Extra Cheese">
+                <label for="extra_cheese">Extra Cheese</label>
+            </div>
+
+            <!-- Special Instructions -->
+            <label for="instructions">Special Instructions:</label>
+            <textarea id="instructions" name="instructions" rows="4" placeholder="Any special requests..."></textarea>
+
+            <!-- Payment Method -->
+            <label>Payment Method:</label>
+            <div class="options">
+                <input type="radio" id="cash" name="payment" value="Cash" required>
+                <label for="cash">Cash on Delivery</label>
+
+                <input type="radio" id="card" name="payment" value="Card">
+                <label for="card">Credit/Debit Card</label>
+            </div>
+
+            <!-- Submit and Reset Buttons -->
+            <button type="submit" class="btn btn-submit">Place Order</button>
+            <button type="reset" class="btn btn-reset">Reset Form</button>
+
+        </form>
+    </div>
+
+</body>
+</html>
