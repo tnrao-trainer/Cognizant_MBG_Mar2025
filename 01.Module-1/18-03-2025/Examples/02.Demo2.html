@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h3>Programming with JavaScript</h3>
+    <hr />
+
+    <input type="button" value="Show Items"  onclick="showButtonClick()" />
+   
+    <ul id="list1">   
+    
+    </ul>
+
+
+    <script>
+        function showButtonClick() {
+            let citiesArray= ["Hyderabad", "Mumbai", "Chennai"];
+
+            let lstObj = document.getElementById("list1");
+
+            let str = "";
+
+            for(let city of citiesArray){
+                str += `<li>  ${city}  </li>`;
+            }
+          
+            lstObj.innerHTML = str;   
+
+        }
+    </script>
+
+</body>
+
+</html>

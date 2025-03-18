@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h3>Programming with JavaScript</h3>
+    <hr />
+
+    <input type="button" value="Show Items"  onclick="showButtonClick()" />
+   
+    <table id="table1" border="1" width="200">     
+    </table>
+
+
+    <script>
+        function showButtonClick() {
+            let citiesArray= ["Hyderabad", "Mumbai", "Chennai", "Goa", "Pune"];
+
+            let tableObj = document.getElementById("table1");
+
+            let str = "<tr> <th>S.No</th> <th>City</th> </tr>";
+
+            for(let index in citiesArray){
+                str += `<tr>
+                        <td>  ${parseInt(index)+1}  </td>
+                        <td> ${citiesArray[index]}  </td>
+                        </tr>`;
+            }
+          
+            tableObj.innerHTML = str;   
+
+        }
+    </script>
+
+</body>
+
+</html>
