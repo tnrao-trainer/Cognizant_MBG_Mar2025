@@ -1,0 +1,95 @@
+<html>
+
+<head>
+
+    <style>
+        #table1 tr:nth-child(even) {
+            background-color: #FDE6D6;
+            color: black;
+        }
+
+        #table1 tr:nth-child(odd) {
+            color: black;
+        }
+
+        #table1 tr th {
+            background-color: #F8761F;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h3>JavaScript Programming -- Array Of Objects - Dynamic DOM </h3>
+    <hr />
+
+    <input id="t1" type="text" placeholder="Student ID" />
+    <input id="t2" type="text" placeholder="Student Name" />
+    <input id="t3" type="text" placeholder="Skill Set" />
+    <input type="button" value="Add Item" onclick="fn_addItem()" />
+    <hr />
+
+    <input type="button" value="Show Items" onclick="fn_showItems()" />
+
+    <br /><br />
+    <table id="table1" border="2" width="500" cellpadding="10" cellspacing="0">
+
+    </table>
+
+
+    <script>
+
+
+        var studentsArray = [
+            { sid: 454545, sname: "Swapna", skillset: "Angular" },
+            { sid: 454546, sname: "Eram", skillset: "React" },
+            { sid: 454547, sname: "Manika", skillset: "Node JS" },
+            { sid: 454548, sname: "Riya", skillset: "HTML5" },
+            { sid: 454549, sname: "Vasundara", skillset: "Angular" }
+        ];
+
+
+
+        function fn_showItems() {
+
+            var tableObj = document.getElementById("table1");
+
+            var str = "<tr> <th>Student id</th> <th>Student Name</th> <th>Skillset</th> </tr>";
+
+            for (let student of studentsArray) {
+                str += `<tr>
+                            <td>  ${student.sid}  </td>
+                            <td> ${student.sname}  </td>
+                            <td> ${student.skillset}  </td>
+                        </tr>`;
+            }
+
+            tableObj.innerHTML = str;
+
+        }
+
+
+        function fn_addItem() {
+            let txtObj1 = document.getElementById("t1");
+            let txtObj2 = document.getElementById("t2");
+            let txtObj3 = document.getElementById("t3");
+
+
+            let newObj = {};
+            newObj.sid = parseInt( txtObj1.value );
+            newObj.sname = txtObj2.value;
+            newObj.skillset = txtObj3.value;
+
+          studentsArray.push(newObj);
+
+          fn_showItems();   
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
