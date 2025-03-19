@@ -1,0 +1,74 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <h3>Working with Objects in JavaScript</h3>
+    <hr />
+
+    <input type="button" onclick="getData1()" value="String Templates" />
+    <input type="button" onclick="getData2()" value="Array Destructuring" />
+    <input type="button" onclick="getData3()" value="Object Destructuring" />
+    <hr />
+
+    <div id="div1" style="border:2px solid blue; font-size:30px; padding : 10px; color : blue;">
+
+    </div>
+
+
+    <script>
+        function getData1() {
+		
+		 
+            let empObj = { empno: 10256, ename: "Scott", job: "Manager" };
+
+            // let str = "";
+            // str  +=   "Employee Number  : "  +  empObj.empno + "<br/>";
+            // str  +=   "Employee Name  : "  +  empObj.ename + "<br/>";
+            // str  +=   "Employee Job  : "  +  empObj.job;
+
+
+            let str = `Employee Number :  ${empObj.empno} <br/> 
+                       Employee Name :  ${empObj.ename} <br/> 
+                       Employee Job :  ${empObj.job} <br/> 
+                      `;
+
+
+            let divObj = document.getElementById("div1");
+            divObj.innerHTML = str;
+
+
+            const  MAX_COUNT  =  100;
+            alert(MAX_COUNT);
+            alert(MAX_COUNT * 5);
+            
+        //    MAX_COUNT = 200;
+
+        }
+
+
+        function getData2() {
+            let citiesArray = ["Hyd", "Mumbai", "Chennai", "Goa", "Pune"];
+            let [city1, city2, city3] = citiesArray;
+
+            let divObj = document.getElementById("div1");
+            divObj.innerHTML = `${city1}, ${city2}, ${city3}`;
+        }
+
+        function getData3() {
+            var obj = { sid: 1025, sname: "Scott" };
+            var { sid, sname } = obj;
+
+            sid = 5465454;
+
+        //    console.log(obj);
+
+            let divObj = document.getElementById("div1");
+            divObj.innerHTML = `Student Id :  ${sid}, Student Name :  ${sname}`;
+        }
+
+    </script>
+</body>
+
+</html>

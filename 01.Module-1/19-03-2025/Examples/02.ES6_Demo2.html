@@ -1,0 +1,65 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <h3>Working with Objects in JavaScript</h3>
+    <hr />
+
+    <input type="button" onclick="getData1()" value="Default Parameters" />
+    <input type="button" onclick="getData2()" value="Spread Attribute" />
+
+    <hr />
+
+    <div id="div1" style="border:2px solid blue; font-size:30px; padding : 10px; color : blue;">
+
+    </div>
+
+
+    <script>
+	
+ 
+ 
+
+        function getTotal(price, qty = 1) {
+            var total = price * qty;
+
+            let divObj = document.getElementById("div1");
+            divObj.innerHTML = `Price :  ${price}, Quantity : ${qty}, Total : ${total}`;
+        }
+
+
+        function getData1() {
+            getTotal(1500);
+            //  getTotal(2500, 3);
+        }
+
+
+        function sum(...arr) {
+            // code to perform sum of all numbers in array
+            let sumResult = 0;
+            for(let item of arr)
+            {
+                sumResult = sumResult +  item;
+            }
+            return sumResult; 
+
+        }
+
+
+
+        function getData2() {
+
+            let divObj = document.getElementById("div1");
+                
+            divObj.innerHTML =  sum(10,30)  +  "<br/>";
+            divObj.innerHTML += sum(10)  +  "<br/>";
+            divObj.innerHTML += sum(10,30,40)  +  "<br/>";
+            divObj.innerHTML += sum(10,30,40,50,60,70)  +  "<br/>";
+ }
+
+    </script>
+</body>
+
+</html>

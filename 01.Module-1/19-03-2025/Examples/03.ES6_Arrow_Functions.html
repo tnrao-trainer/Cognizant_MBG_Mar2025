@@ -1,0 +1,62 @@
+<html>
+        <head></head>
+<body>
+    <h3>Working with Objects in JavaScript</h3>
+    <hr />
+
+    <input type="button" onclick="getData()" value="Arrow Fucntion Demo" />
+    <hr />
+
+    <div id="div1" style="border:2px solid blue; font-size:30px; padding : 10px; color : blue;">
+    </div>
+
+
+    <script> 
+
+
+        function getEvens(n)
+        {
+            return n * 2;
+        }
+
+        function getData() {
+
+            let divObj = document.getElementById("div1");
+
+
+            let  arr1 =  [1,2,3,4,5];
+
+            // Return a new array with the square root of all array element values
+            // A callback is a function passed as an argument to another function.
+            let  arr2  = arr1.map( Math.sqrt );
+            let  arr3  = arr1.map( getEvens );
+
+            // Anonymous Functions 
+            let  arr4  = arr1.map( function(n)
+            {
+                    return n * 5;
+            });
+
+            // Arrow Functions - ES6
+            let  arr5  = arr1.map( (n)  => 
+            {
+                    return n * 10;
+            });
+
+            
+            let  arr6  = arr1.map(n =>  n * 11);
+            let  arr7  = arr1.map(n =>  n * n);
+           
+            divObj.innerHTML = arr1  +  "<br/>";
+            divObj.innerHTML += arr2  +  "<br/>";
+            divObj.innerHTML += arr3  +  "<br/>";
+            divObj.innerHTML += arr4 +  "<br/>";
+            divObj.innerHTML += arr5 +  "<br/>";
+            divObj.innerHTML += arr6 +  "<br/>";
+            divObj.innerHTML += arr7 +  "<br/>";
+        
+        }  
+    </script>
+</body>
+
+</html>
