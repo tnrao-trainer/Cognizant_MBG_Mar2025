@@ -1,0 +1,24 @@
+ WebStorage API in HTML5
+~~~~~~~~~~~~~~~~~~~~~~~
+->  WebStorage API is used to store the data in client system.
+
+-> It helps to sharing the data between multiple pages. It works completely in client system.
+
+-> This data is not accessible in server code.
+
+-> Before HTML5, cookies are used to store the data in local system.
+
+-> Cookies are having following limitations:
+	1. Need to be transfer to server for every request.
+	2. It makes request processing become slow.
+	3. Limited amount of data can store.
+	
+-> WebStorage concept overcome these problems.
+	-> No need to be transfer the data to server for every request.
+	-> It can store huge amount of data.	
+---------------------------------------------------------
+Implementation of WebStorage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-> To implement WebStorage, HTML5 provides the following objects:
+	1. localStorage
+	2. sessionStorage
