@@ -1,0 +1,40 @@
+Date:  21-03-2025
+Module :  SQL Programming using MySql
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SELECT * FROM Emp
+
+SELECT * FROM Emp  WHERE Deptno=10
+SELECT * FROM Emp  WHERE Job='MANAGER'
+
+SELECT * FROM Emp  WHERE Job='MANAGER'  ORDER BY sal 
+
+SELECT Count(*) FROM Emp  WHERE Job='MANAGER'
+
+
+
+Depts:			Deptno, Dname, Loc
+
+
+
+
+
+ 
+ 
+ 20 + 2  =  22		---  Emps
+ 5(old) + 1(new)  =  6		---  Depts
+
+SELECT Ename, Dname
+FROM Emp
+RIGHT JOIN Dept 
+ON Emp.deptno  = Dept.deptno;
+
+
+ 
+
+SELECT * FROM Emp  WHERE sal = (SELECT max(SAL) FROM Salaries)
+
+
+
+
+ 
