@@ -1,0 +1,94 @@
+   Date:  28th March, 2025
+C# Programming
+~~~~~~~~~~~~~~~~~~~~
+
+
+same namespace 
+			ConsoleApp21
+					Program
+					
+			ConsoleApp21.EmpManagement
+					Employee
+					
+					
+					
+					
+Class Level :
+					a.  public  :    access outside the project 
+					b. internal :   access inside the project only   (default)
+					
+	Members Level:   (props/methods/constructors....)
+					a.  public :    access outside the class 
+					b. private :  access inside the class 
+					c.  protected :   parent  to child 
+				 
+				 
+				 
+Is  a  relationship :
+		Every employee is a person 
+		Every student is a person 
+		
+		Every manager is a employee 
+		
+
+
+
+Has  a  relationship 
+
+
+	class  Address
+	{
+		...........
+	}
+
+		class  Employee
+		{
+			
+				public int  EmpId {  get; set; }
+				
+				public Address PresentAddress{  get;   set;}
+				
+				public Address OfficeAddress{  get;   set;}
+			
+		}
+--------------------------------------------------------------------------------------------------------
+
+
+Method Overloading
+~~~~~~~~~~~~~~~~~~
+
+Eg:   Console.WriteLine()  --- overloaded 18 times 
+
+			a.  same method name 
+			b.  different in parameters  ( type /  number /  order )
+			
+			
+			
+	
+  public void Greeting()
+  
+  public int  Greeting()
+  
+  
+  obj.Greeting();
+  
+  
+
+
+
+
+
+
+
+Run-time Polymorphism: Method Overriding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+	-->  Re-defining the parent class method inside the child class 
+	
+	-->     Parent :			virtual
+			  Child :			override
+
+
+
+ 
