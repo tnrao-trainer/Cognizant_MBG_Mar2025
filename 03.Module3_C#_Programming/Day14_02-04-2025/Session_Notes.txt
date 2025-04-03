@@ -1,1 +1,45 @@
 
+Day-14  :   02-04-2025
+~~~~~~~~~~~~~~~~~~
+
+
+
+List<int>  lstNumbers = new List<int>(){10,20,35,37, 42,46,55};
+
+foreach(int item in lstNumbers)
+{
+	if(item % 2 == 0)
+	{
+		Console.WriteLine(item);
+	}	
+}
+
+
+
+
+
+List<int>  lstNumbers = new List<int>(){10,20,35,37, 42,46,55};
+
+
+lstNumbers.Where(    );
+
+
+
+
+
+Perform operations on products data (pid, pname, price, qty, category)
+
+Reuirements
+1.   Filter products based on given category	 
+2.   Sorting based on price 
+3.   Filter products between given range of price 
+4.   Count number of products in the given category 
+5.  Filter based on Category and Sort them on the price descending order.
+
+Hint :  Implement the above queries using both LINQ Query and LINQ Methods 
+
+
+
+
+
+
