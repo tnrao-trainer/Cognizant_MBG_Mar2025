@@ -1,0 +1,56 @@
+Day16:  04-04-2025
+~~~~~~~~~~~~~~~~~
+
+ADO.NET 
+
+1. What is the purpose of using block in C#?
+		using(  SqlConnection  con = new SqlConnection() )
+		{
+			
+			
+		}
+		
+		// after using block con object will dispose (clear resources)
+		
+2.  What is NuGet Package manager in Visual Studio? Why do we use it?
+
+			--> Install packages / libraries in the given .net project
+
+
+3.  What is Microsoft.Data.SqlClient namespace? Why do we required this namespace?
+					
+				System.Data.SqlClient      -- Older one, now it is deprecated 				
+				Microsoft.Data.SqlClient   --   Latest one, used with all .net core projects 
+				
+				
+				
+4.  What is ADO.NET? 
+		--  perform database operations in .net applications
+
+
+---------------------------------------------------------
+
+// Windows Authentication
+string connStr = "Server=DESKTOP-B3L5S5L\\SQLEXPRESS; Database=Apr2025Db; Integrated Security=true; TrustServerCertificate=True";
+
+// SQL Server Authentication
+string connStr =  "Server=DESKTOP-B3L5S5L\\SQLEXPRESS; Database=Apr2025Db; User Id=scott;  Password=scott123;";
+
+	SqlConnection  con = new SqlConnection(connStr);
+	con.Open();
+	.....
+	con.Close();
+	
+	
+	
+	
+	
+	
+	
+	SqlCommand cmd = new SqlCommand("command_text", con);
+	
+Methods:
+						a.   ExecuteReader()    	---    SqlDataReader
+						b.   ExecuteScalar()		---		Object
+						c.   ExecuteNonQuery()	---		int 
+						
