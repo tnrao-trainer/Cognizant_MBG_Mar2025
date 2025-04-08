@@ -1,0 +1,32 @@
+Day18:    08-04-2025
+~~~~~~~~~~~~~~~~~~
+
+
+	empList.Where( item  =>  item.deptno == 10 );
+	empList.Where( item  =>  item.job == "Manager" );
+	
+	empList.Where(?);
+
+	void  Greeting(string  uname);
+	
+	Greeting("Scott");
+	Greeting("Smith");
+	
+	
+	
+	
+	
+	Namespace :
+			1. Class
+			2. Interface
+			3. Delegates
+			-------------
+			4.  Struct
+			5.  Enum
+			
+			
+			
+			
+			 
+        Thread th1 = new Thread(.....);
+      
