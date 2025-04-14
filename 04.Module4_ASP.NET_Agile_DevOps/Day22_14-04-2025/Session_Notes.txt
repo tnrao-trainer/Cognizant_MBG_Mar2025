@@ -1,0 +1,24 @@
+
+Day22 - 14-04-2025
+~~~~~~~~~~~~~~~~~
+
+Working with Validations Controls in ASP.NET
+
+Validations
+
+		--> At Client end
+		-->  in browser 
+		-->  JavaScript
+		
+		--> Target :  alid data will send to server 
+		
+		
+
+
+
+  Page.IsPostBack		---  true (postback request)  / false   (first request)
+  Page.IsValid 			---  true (all validations are passed)
+									---  false (any one validation failed)
+									
+									
+									
