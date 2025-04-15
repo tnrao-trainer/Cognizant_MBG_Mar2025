@@ -1,0 +1,164 @@
+
+
+
+Working with Master Pages
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+Regular WebForms  (without master)	----		*.aspx 
+
+	
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication31.WebForm1" %>
+-------------------------------
+
+Master Page			----   *.master
+Content Page     	 ----	 *.aspx 
+<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="WebApplication31.About" %>
+
+	
+	
+	
+Without Master Page
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication31.WebForm1" %>
+
+With Master Page
+<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="WebApplication31.About" %>
+
+
+
+
+
+
+
+
+
+Site.master
+ <asp:ContentPlaceHolder ID="MainContent" runat="server">
+ </asp:ContentPlaceHolder>
+ 
+ 
+ About.aspx
+ <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+ ...
+ </asp:Content>
+
+
+
+
+
+-----------------------------------------------------------------------------------
+
+
+State Management 
+~~~~~~~~~~~~~~~~~
+
+--> State management in ASP.NET refers to techniques used to preserve data across multiple HTTP requests within a web application, addressing the stateless nature of HTTP. 
+
+--> This allows web applications to maintain information about a user's interaction, session, or the application's state itself. 
+
+Client side
+		a. ViewState
+		b. Hidden fields
+		c. ControlState
+		d. QueryString
+		e. Cookies 
+		
+		
+Server Side 
+		a. Session State
+		b. Application State
+		c.  Cache 
+
+
+
+
+multiple HTTP requests
+
+
+		a.  may be same Page
+		b.  diff. page 
+		
+				i.  using code 
+						 Response.Redirect("Url")
+						 Response.Redirect("Products.aspx");
+				 
+				 ii.  using  hyperlinks 
+				 
+				 
+				
+
+
+
+
+
+QueryString
+~~~~~~~~~~~~~
+	Page1:
+			Response.Redirect($"WebForm3.aspx?uid={TextBox1.Text}");
+  
+    Page2: 
+				string uidStr = Request.QueryString["uid"];
+				
+				
+				
+----------------------------------------------------------------------
+
+
+
+Create Cookie
+~~~~~~~~~~~~~~
+HttpCookie userCookie = new HttpCookie("UserName", "Scott");
+userCookie.Expires = DateTime.Now.AddDays(7); // Cookie will last 7 days
+Response.Cookies.Add(userCookie);
+
+
+
+Read data from Cookie 
+~~~~~~~~~~~~~~~~~~~~~
+ if (Request.Cookies["UserName"] != null)
+{
+	string name = Request.Cookies["UserName"].Value;	  // returns "Scott"
+	lblMessage.Text = "Welcome back, " + name + "!";
+}
+----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+Session  	---  single user 
+Application --   all  users 
+
+
+		Session["userId"]  =  "Scott";			// boxing 
+		string   str  =  (string)  Session["userId"];  // unboxig 
+		
+		
+		Application["userId"]  =  "Scott";			// boxing 
+		string   str  =  (string)  Application["userId"];  // unboxig 
+		
+		
+		
+		
+		
+		
+		
+		
+			Application["ProductCount"]  =   count;			
+			int  n = (int)  Application["ProductCount"];
+			---------------------------------------------
+			
+			List<Product>  prdList  =  new List<Product>();
+			
+			Session["MyCartList"]  =  prdList;
+			
+		    List<Product>  tempList  =  (  List<Product> )  Session["MyCartList"];
+			
+			
+			
+		 
