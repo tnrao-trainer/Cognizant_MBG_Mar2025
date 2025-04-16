@@ -1,0 +1,38 @@
+
+Day24  - 16-04-2025
+~~~~~~~~~~~~~~~~~~
+
+		
+		
+		AutoGenerateColumns="true"
+		
+		
+		gridView1.DataSource =  List  / DataTable  
+		gridView1.DataBind();
+		
+		
+
+
+
+
+<h1>Hi @uname, Good morning...!</h1>
+
+<h1>Hi {{uname}}, Good morning...!</h1>
+
+<h1>Hi {uname}, Good morning...!</h1>
+
+
+
+
+
+Define required properties in PageModel class and decorate with [BindProperty]  Attribute:
+	
+
+  [BindProperty]
+  public string UserName {  get; set; }
+  
+  
+
+Create input tag by applying asp-for attribute to binding input field with Property:
+
+	<input  type="text"  asp-for="UserName"  />
