@@ -1,0 +1,31 @@
+﻿@page
+@model StudentsModel
+@{
+    ViewData["Title"] = "Student List";
+}
+
+<h2>Student List</h2>
+
+<table border="1" cellpadding="5" cellspacing="0">
+     
+        <tr style="background-color: LightGray">
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Course</th>
+            <th>Email</th>
+        </tr>
+    
+    
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.Name</td>
+                <td>@student.Age</td>
+                <td>@student.Course</td>
+                <td>@student.Email</td>
+            </tr>
+        }
+   
+</table>

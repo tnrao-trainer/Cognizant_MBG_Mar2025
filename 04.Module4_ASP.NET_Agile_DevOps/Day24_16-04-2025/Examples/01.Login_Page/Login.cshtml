@@ -1,0 +1,27 @@
+﻿@page
+@model WebApplication33.Pages.LoginModel
+@{
+}
+
+
+
+<fieldset>
+    <legend>User Login</legend>
+
+    <form method="post"  action="">
+            
+        User Id :  <input type="text" asp-for="UserName"  />
+        <br/><br/>
+
+        Password :  <input type="password" asp-for="Password" />
+        <br /><br />
+
+        <input type="submit" value="Login" />
+        <hr/>
+
+        <p style="color:red;">@Model.Message</p>
+
+    </form>
+
+</fieldset>
+
