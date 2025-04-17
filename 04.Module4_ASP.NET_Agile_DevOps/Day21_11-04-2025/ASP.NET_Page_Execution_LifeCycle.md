@@ -1,22 +1,22 @@
  
 ---
 
-# 📘 ASP.NET Web Forms Page Life Cycle
+#   ASP.NET Web Forms Page Life Cycle
 
 ---
 
-## 🎯 Objective:
+##   Objective:
 Understand the **sequence of events** that occur from the time a Web Form is requested until the response is sent back to the browser.
 
 ---
 
-## 🌐 What is the Page Life Cycle?
+##   What is the Page Life Cycle?
 
 The **ASP.NET Page Life Cycle** refers to the **series of steps** and **events** that ASP.NET follows to **initialize**, **process**, **render**, and **unload** a web form.
 
 ---
 
-## 🔄 Key Stages of Page Life Cycle
+##   Key Stages of Page Life Cycle
 
 | Phase                | Description |
 |----------------------|-------------|
@@ -32,7 +32,7 @@ The **ASP.NET Page Life Cycle** refers to the **series of steps** and **events**
 
 ---
 
-## 🧭 Page Life Cycle Flow (Events Sequence)
+##   Page Life Cycle Flow (Events Sequence)
 
 ```text
 Page_Request
@@ -51,7 +51,7 @@ Page_Request
 
 ---
 
-## 🧠 Important Page Events Explained
+##   Important Page Events Explained
 
 | Event            | Description |
 |------------------|-------------|
@@ -65,7 +65,7 @@ Page_Request
 
 ---
 
-## 🔍 Code Example: Hooking Into Events
+##   Code Example: Hooking Into Events
 
 ```csharp
 protected void Page_PreInit(object sender, EventArgs e)
@@ -104,7 +104,7 @@ protected void Page_Unload(object sender, EventArgs e)
 
 ---
 
-## 🔑 Key Concepts
+##   Key Concepts
 
 | Term | Description |
 |------|-------------|
@@ -114,7 +114,7 @@ protected void Page_Unload(object sender, EventArgs e)
 
 ---
 
-## 🎓 Summary Table
+##   Summary Table
 
 | Stage            | Main Task                              |
 |------------------|-----------------------------------------|
