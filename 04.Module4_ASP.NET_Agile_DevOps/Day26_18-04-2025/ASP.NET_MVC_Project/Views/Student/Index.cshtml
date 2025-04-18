@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication5.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               StudentId
+            </th>
+            <th>
+               Name
+            </th>
+            <th>
+               Course
+            </th>
+            <th>
+               Email
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.StudentId </td>
+                <td> @item.Name </td>
+                <td> @item.Course </td>
+                <td> @item.Email </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
