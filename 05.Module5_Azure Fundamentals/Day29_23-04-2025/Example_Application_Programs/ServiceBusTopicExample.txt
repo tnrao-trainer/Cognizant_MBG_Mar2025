@@ -1,0 +1,104 @@
+using Azure.Messaging.ServiceBus;
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    // Connection string and topic/subscription names
+     private static readonly string connectionString = "Endpoint=sb://testnamespace2204.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=a567WSypHoXr0KgkwJfEITrgVrYfgPx0w+ASbFQo2Og=";
+	 
+    private static readonly string topicName = "salesperformancemessages";
+	
+    private static readonly string subscriptionName = "Indians";
+
+    static async Task Main(string[] args)
+    {
+        // Run sender and receiver tasks
+        await SendMessagesAsync();
+        await ReceiveMessagesAsync();
+    }
+
+    static async Task SendMessagesAsync()
+    {
+        // Create a ServiceBusClient
+        await using var client = new ServiceBusClient(connectionString);
+
+        // Create a sender for the topic
+        ServiceBusSender sender = client.CreateSender(topicName);
+
+        try
+        {
+            // Send multiple messages with different properties
+            string[] messageTypes = { "Order", "Notification", "Alert" };
+            for (int i = 1; i <= 3; i++)
+            {
+                string messageBody = $"Message {i} of type {messageTypes[i-1]}";
+                ServiceBusMessage message = new ServiceBusMessage(messageBody)
+                {
+                    MessageId = Guid.NewGuid().ToString(),
+                    Subject = messageTypes[i-1]
+                };
+                message.ApplicationProperties.Add("MessageType", messageTypes[i-1]);
+
+                await sender.SendMessageAsync(message);
+                Console.WriteLine($"Sent message: {messageBody}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error sending message: {ex.Message}");
+        }
+    }
+
+    static async Task ReceiveMessagesAsync()
+    {
+        // Create a ServiceBusClient
+        await using var client = new ServiceBusClient(connectionString);
+
+        // Create a processor for the subscription
+        ServiceBusProcessor processor = client.CreateProcessor(topicName, subscriptionName, new ServiceBusProcessorOptions
+        {
+            AutoCompleteMessages = true, // Automatically complete messages after processing
+            MaxConcurrentCalls = 1 // Process one message at a time
+        });
+
+        try
+        {
+            // Define the message handler
+            processor.ProcessMessageAsync += async args =>
+            {
+                string messageBody = args.Message.Body.ToString();
+                Console.WriteLine($"Received message: {messageBody} (MessageId: {args.Message.MessageId})");
+
+                // Access custom properties
+                if (args.Message.ApplicationProperties.ContainsKey("MessageType"))
+                {
+                    Console.WriteLine($"Message Type: {args.Message.ApplicationProperties["MessageType"]}");
+                }
+            };
+
+            // Define the error handler
+            processor.ProcessErrorAsync += args =>
+            {
+                Console.WriteLine($"Error: {args.Exception.Message}");
+                return Task.CompletedTask;
+            };
+
+            // Start processing
+            Console.WriteLine($"Starting to process messages from subscription '{subscriptionName}'...");
+            await processor.StartProcessingAsync();
+
+            // Wait for user input to stop
+            Console.WriteLine("Press any key to stop processing...");
+            Console.ReadKey();
+
+            // Stop processing
+            await processor.StopProcessingAsync();
+            Console.WriteLine("Stopped processing messages.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
