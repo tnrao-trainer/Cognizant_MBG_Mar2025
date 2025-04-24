@@ -1,0 +1,110 @@
+ using Azure.Storage.Queues;
+using Azure.Storage.Queues.Models;
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+namespace QueueStorageDemo
+{
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            try
+            {
+                // Replace with your storage account connection string
+                string connectionString = "DefaultEndpointsProtocol=https;AccountName=teststorageaccont2404;AccountKey=1HG7eSsxStpQrW5xfvetYVTsNkjMv7HDOUDeecrtLUMtJza0DBSvb1o/dDozlyGzLsDic2H8vV+m+AStJ2leTw==;EndpointSuffix=core.windows.net";
+
+                // Name of the queue
+                string queueName = "teststoragequeue2404";
+
+                // Initialize QueueClient
+                QueueClient queueClient = new QueueClient(connectionString, queueName);
+
+                // Create the queue if it doesn't exist
+                Console.WriteLine($"Creating queue '{queueName}' if it doesn't exist...");
+                await queueClient.CreateIfNotExistsAsync();
+
+                // Send employee messages to the queue
+                await SendEmployeeMessagesAsync(queueClient);
+
+                // Read and process messages from the queue
+                await ReadEmployeeMessagesAsync(queueClient);
+
+                // Optional: Delete the queue
+                // Console.WriteLine("\nDeleting the queue...");
+                // await queueClient.DeleteAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Sends employee data as JSON messages to the Azure Queue.
+        /// </summary>
+        static async Task SendEmployeeMessagesAsync(QueueClient queueClient)
+        {
+            Console.WriteLine("\nSending JSON messages to the queue...");
+
+            // Create sample employee data
+            var employees = new[]
+            {
+                new Employee { Empno = 101, Ename = "John Doe", Deptno = 10 },
+                new Employee { Empno = 102, Ename = "Jane Smith", Deptno = 20 },
+                new Employee { Empno = 103, Ename = "Bob Johnson", Deptno = 10 }
+            };
+
+            // Send each employee as a JSON message
+            foreach (var employee in employees)
+            {
+                string jsonMessage = JsonSerializer.Serialize(employee);
+                await queueClient.SendMessageAsync(jsonMessage);
+                Console.WriteLine($"Sent: {jsonMessage}");
+            }
+        }
+
+        /// <summary>
+        /// Reads and processes JSON messages from the Azure Queue, deserializing them into Employee objects.
+        /// </summary>
+        static async Task ReadEmployeeMessagesAsync(QueueClient queueClient)
+        {
+            Console.WriteLine("\nPeeking at messages in the queue...");
+            PeekedMessage[] peekedMessages = await queueClient.PeekMessagesAsync(maxMessages: 5);
+            foreach (var message in peekedMessages)
+            {
+                Console.WriteLine($"Peeked Message: {message.MessageText} (ID: {message.MessageId})");
+            }
+            
+             
+            Console.WriteLine("\nReceiving and processing JSON messages...");
+            QueueMessage[] messages = await queueClient.ReceiveMessagesAsync(maxMessages: 5);
+            foreach (var message in messages)
+            {
+                // Deserialize the JSON message
+                var employee = JsonSerializer.Deserialize<Employee>(message.MessageText);
+                Console.WriteLine($"Received Employee: Empno={employee.Empno}, Ename={employee.Ename}, Deptno={employee.Deptno}");
+
+               
+                // Delete the message after processing
+                await queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt);
+                Console.WriteLine($"Deleted Message: {message.MessageText}");
+                 
+            }
+            
+            
+        }
+    }
+
+    // Employee class to match JSON structure
+    public class Employee
+    {
+        public int Empno { get; set; }
+        public string Ename { get; set; }
+        public int Deptno { get; set; }
+    }
+}

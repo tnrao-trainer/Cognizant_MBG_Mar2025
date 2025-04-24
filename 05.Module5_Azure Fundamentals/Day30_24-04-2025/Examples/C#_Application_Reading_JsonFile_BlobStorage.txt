@@ -1,0 +1,88 @@
+// Install  "Azure.Storage.Blobs"  package using NuGet Package manager
+
+
+using Azure.Storage.Blobs;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Text.Json; // For JSON deserialization
+using System.Threading.Tasks;
+
+
+namespace ConsoleApp23
+{
+   
+
+    namespace BlobStorageReader
+    {
+        class Program
+        {
+            static async Task Main(string[] args)
+            {
+                try
+                {
+                    // Replace with your storage account connection string
+                    string connectionString = "DefaultEndpointsProtocol=https;AccountName=teststorageaccont2404;AccountKey=1HG7eSsxStpQrW5xfvetYVTsNkjMv7HDOUDeecrtLUMtJza0DBSvb1o/dDozlyGzLsDic2H8vV+m+AStJ2leTw==;EndpointSuffix=core.windows.net";
+
+                    // Replace with your container name and blob (JSON file) name
+                    string containerName = "testblobcontainer";
+                    string blobName = "db_emps.json";
+
+                    // Initialize BlobServiceClient to connect to the storage account
+                    BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+                    // Get a reference to the container
+                    BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+
+                    // Get a reference to the blob (JSON file)
+                    BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
+                    // Check if the blob exists
+                    if (await blobClient.ExistsAsync())
+                    {
+                        // Download the blob's content
+                        var response = await blobClient.DownloadAsync();
+                        using (var stream = response.Value.Content)
+                        using (var reader = new StreamReader(stream))
+                        {
+                            // Read the JSON content as a string
+                            string jsonContent = await reader.ReadToEndAsync();
+                            Console.WriteLine("JSON Content:");
+                            Console.WriteLine(jsonContent);
+
+                            // Deserialize JSON to a list of Employee objects
+                            var employees = JsonSerializer.Deserialize<List<Employee>>(jsonContent);
+
+                            // Display deserialized employee data
+                            Console.WriteLine("\nDeserialized Employee Data:");
+                            foreach (var employee in employees)
+                            {
+                                Console.WriteLine($"Employee Number: {employee.empno}, Name: {employee.ename}, Department: {employee.deptno}");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Blob '{blobName}' not found in container '{containerName}'.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+
+                Console.ReadLine();
+            }
+         
+        }
+
+        // Class to match the JSON structure for employee data
+        public class Employee
+        {
+            [System.Text.Json.Serialization.JsonPropertyName("empno")]
+            public int empno { get; set; }           
+            public string ename { get; set; }
+            public int deptno { get; set; }
+        }
+    }
+}
