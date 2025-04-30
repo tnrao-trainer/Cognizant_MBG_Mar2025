@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<WebApplication37.Models.Employee>
+
+
+<h2>Employee List</h2>
+
+<a  asp-controller="Employee" asp-action="Create">Create New Employee</a>
+<hr/>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Empno</th>
+            <th>Ename</th>
+            <th>Job</th>
+            <th>Sal</th>
+            <th>Deptno</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            foreach(Employee emp in Model)
+            {
+                <tr>
+                        <td>@emp.Empno</td>
+                        <td>@emp.Ename</td>
+                        <td>@emp.Job</td>
+                        <td>@emp.Sal</td>
+                        <td>@emp.Deptno</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</<table>
+ 
+ 
+
+

@@ -1,0 +1,39 @@
+﻿@model WebApplication37.Models.Employee
+
+<h2>Create Employee</h2>
+
+<form asp-action="Create">
+
+   
+    <div class="form-group">
+        <label asp-for="Ename"></label>
+        <input asp-for="Ename" class="form-control" />
+        <span asp-validation-for="Ename" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Job"></label>
+        <input asp-for="Job" class="form-control" />
+        <span asp-validation-for="Job" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Sal"></label>
+        <input asp-for="Sal" class="form-control" />
+        <span asp-validation-for="Sal" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Deptno"></label>
+        <input asp-for="Deptno" class="form-control" />
+        <span asp-validation-for="Deptno" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
