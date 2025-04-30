@@ -1,1 +1,37 @@
+ASP.NET MVC
+~~~~~~~~~~~~
+
+
+->  Develop  Web Applications
+->  
+			Model  ---     Data Handling logic (Database)			
+			
+								  a.  Entity Classes / Model Class 		----    map with database table 
+											Eg:    Employee,  Dept,  Customer 
+													 Properties =  Columns 
+													 
+								 b.   DbContext :    ApplicationDbContext			
+																 TestDbContext
+																Apr2025DbContext 
+																.....
+																
+																Bridge between application and database 
+																
+																
+								
+				
+			View    ---      UI / Presentation 
+										
+									*.cshtml (Razor Pages)
+									C#, html, css, javascript 
+									@
+									
+			
+			Controller  ---    Request Handling  and send  Response 					
+						Controller  Class
+										-- Action Methods   -->   Request Handling logic
+										-- GET  ([HttpGet] ) and POST  (  [HttpPost] )
+	
+				
+
   
