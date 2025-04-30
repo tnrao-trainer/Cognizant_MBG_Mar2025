@@ -33,5 +33,129 @@ ASP.NET MVC
 										-- GET  ([HttpGet] ) and POST  (  [HttpPost] )
 	
 				
+--------------------------------------------------------------------------------------------------------
 
-  
+
+
+Entity Framework
+~~~~~~~~~~~~~~~
+
+--> ORM tool from Microsoft
+--> Object-Relational Mapping 
+
+Object (C# Class objects)   -    Relational (RDBMS)       Mapping 
+
+
+
+
+
+						a.  Entity Classes / Model Class 		----    map with database table 
+											Eg:    Employee,  Dept,  Customer 
+													 Properties =  Columns 
+													 
+						 b.   DbContext :    ApplicationDbContext			
+																 TestDbContext
+																Apr2025DbContext 
+																.....
+																
+																Bridge between application and database 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.   Install EF Core required packages using NuGet
+2.   ConnectionString  ---   appsettings.json 
+3.   Create  Models:
+				---  Entity /Model   
+				---  DbContext  class     
+4.   Register the DbContext  class as  service in Program.cs
+5.   Generate / Update Database 
+6.   Inject the DbContext class in Controller 
+7.   Perform operations using DbContext
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+1.   Create Interface for repository
+2.   Implement the repository interface  --- Class 
+3.   Register the repository  class as  service in Program.cs 
+4.   Inject  repository in controller 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  Repositories/Interfaces/IEmployeeRepository.cs
+public interface IEmployeeRepository
+{
+	IEnumerable<Employee> GetAllEmployee(); 
+	void AddEmployee(Employee   obj);       
+}
+
+// Repositories/Implementations/EmployeeRepository.cs
+public class EmployeeRepository : IEmployeeRepository
+{
+        private readonly ApplicationDbContext _context;
+
+        public EmployeeRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+		
+		
+		 public IEnumerable<Employee> GetAllEmployee()
+        {
+            return  _context.Employees.ToList();
+        } 
+		
+        public void AddEmployee(Employee obj)
+        {
+            _context.Employees.Add(obj);
+            _context.SaveChanges();
+        }
+}
+
+
+
+// Register the repository interface and its implementation
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+
+ 
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+ 
